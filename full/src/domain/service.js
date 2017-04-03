@@ -1,4 +1,5 @@
 import User from './models/User';
+import Post from './models/Post';
 import { getStore } from '../base/store';
 import Logger from 'js-logger'
 
@@ -13,5 +14,6 @@ export async function fetchUsers(){
 export async function selectedUser(userId){
   log.debug('login', userId);
   getStore().selectedUser = User.getById(userId);
-  log.debug('selected user:', getStore().user);
+  await Post.fetch(`userId=${userId}`);
+  log.debug('selected user:', getStore().selectedUser);
 }

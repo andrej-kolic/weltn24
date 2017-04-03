@@ -15,8 +15,8 @@ export default class Model {
     return getStore().orm[this.modelName] = json;
   }
 
-  static async fetch() {
-    const res = await apiClient.get(this.url);
+  static async fetch(params) {
+    const res = await apiClient.get(this.url, null, params);
     this.models = res.map((json) => {
       const model = new this();
       Object.assign(model, json);

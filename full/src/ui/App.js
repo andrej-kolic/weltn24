@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import User from './User';
+import Posts from './Posts';
 import Logger from 'js-logger'
 import { service, getStore } from '../domain';
 
@@ -20,7 +20,8 @@ class App extends Component {
 
   async componentWillMount() {
     await service.fetchUsers();
-    this.setState({ users: getStore().orm.User })
+    this.setState({ users: getStore().orm.User });
+    if(getStore().orm.User) this.selectUser(getStore().orm.User[0].id);
   }
 
   render() {
@@ -29,20 +30,20 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-          <select value={this.state.value} onChange={this.selectUser}>
+          <div className="App-logo-container"><img src={logo} className="App-logo" alt="logo" /></div>
+          <select value={this.state.value} onChange={(event) => this.selectUser(event.target.value)}>
             {userElements}
           </select>
         </div>
-        <User user={this.state.selectedUser} />
+        <h2>Posts</h2>
+        <Posts posts={this.state.selectedUser ? this.state.selectedUser.getPosts(): []} />
       </div>
     );
   }
 
-  selectUser = (event) => {
-    log.debug('selectUser', event.target.value);
-    service.selectedUser(event.target.value).then(() => this.setState({ selectedUser: getStore().selectedUser }));
+  selectUser = (id) => {
+    log.debug('selectUser', id);
+    service.selectedUser(id).then(() => this.setState({ selectedUser: getStore().selectedUser }));
   }
 }
 
