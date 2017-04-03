@@ -11,6 +11,7 @@ Different approaches are located in 2 folders:
 
 To run:
 ```
+cd minimal
 npm install
 npm start
 ```
@@ -23,12 +24,15 @@ Technologies: fetch api, Promises
 
 To run:
 ```
+cd full
 npm install
 npm start
 ```
 open ```http://localhost:3000/```
 
 look at logs in browser console.
+
+[Preview here](http://weltn24.netlify.com)
 
 Technologies: Es6/7, fetch api, Promises, new module system, async / await, React, Domain Driven Design, decoupling
 
