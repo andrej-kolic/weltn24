@@ -43,7 +43,7 @@ class App extends Component {
 
   selectUser = (id) => {
     log.debug('selectUser', id);
-    service.selectedUser(id).then(() => this.setState({ selectedUser: getStore().selectedUser }));
+    service.selectUser(id).then(() => this.setState({ selectedUser: getStore().selectedUser }));
   }
 }
 

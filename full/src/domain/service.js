@@ -11,9 +11,21 @@ export async function fetchUsers(){
   log.debug(`${User.count()} users fetched`);
 }
 
-export async function selectedUser(userId){
+export async function selectUser(userId){
   log.debug('login', userId);
   getStore().selectedUser = User.getById(userId);
   await Post.fetch(`userId=${userId}`);
   log.debug('selected user:', getStore().selectedUser);
+}
+
+export async function selectPost(postId){
+  // TODO: implement
+}
+
+export async function addComment(postId, payload){
+  // TODO: implement
+}
+
+export async function removeComment(commentId){
+  // TODO: implement
 }

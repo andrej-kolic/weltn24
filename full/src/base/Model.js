@@ -1,9 +1,9 @@
 import * as apiClient from './apiClient';
 import { getStore } from './store';
-import Logger from 'js-logger'
+// import Logger from 'js-logger'
 
 
-const log = Logger.get('Model');
+// const log = Logger.get('Model');
 
 export default class Model {
 
@@ -15,6 +15,16 @@ export default class Model {
     return getStore().orm[this.modelName] = json;
   }
 
+  static count() {
+    return this.models.length;
+  }
+
+  static getById(id) {
+    return this.models.find(model => model.id === +id);
+  }
+
+  // remote
+
   static async fetch(params) {
     const res = await apiClient.get(this.url, null, params);
     this.models = res.map((json) => {
@@ -24,11 +34,15 @@ export default class Model {
     });
   }
 
-  static count() {
-    return this.models.length;
+  static async remove(id){
+    // TODO: implement
   }
 
-  static getById(id) {
-    return this.models.find(model => model.id === +id);
+  static async create(payload){
+    // TODO: implement
+  }
+
+  async update(payload){
+    // TODO: implement
   }
 }
