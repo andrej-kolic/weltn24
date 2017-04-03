@@ -16,6 +16,7 @@ var user = null;
 var posts = null;
 
 Promise.all([
+  // fetch data for given userId
   jsonRequest('http://jsonplaceholder.typicode.com/users/' + userId)
     .then(function (json) {
       console.log('user fetched');
@@ -27,6 +28,7 @@ Promise.all([
       posts = json;
     })
 ]).then(function () {
+  // connect models and sort posts in descending order
   console.info('data loaded');
   user.posts = posts.sort(function (a, b) {
     return a.id < b.id ? 1 : -1
@@ -34,8 +36,10 @@ Promise.all([
   posts.forEach(function (element) {
     element.user = user;
   });
+  // print data
   console.log('latest post for user ' + user.name + ' is titled ' + user.posts[0].title)
 }).catch(function (err) {
+  // log exception
   console.error(err);
 });
 
