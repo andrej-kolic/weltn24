@@ -32,3 +32,4 @@ look at logs in browser console.
 
 Technologies: Es6/7, fetch api, Promises, new module system, async / await, React, Domain Driven Design, decoupling
 
+![Preview](preview.png?raw=true "Preview")
