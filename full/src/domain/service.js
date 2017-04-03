@@ -12,7 +12,7 @@ export async function fetchUsers(){
 }
 
 export async function selectUser(userId){
-  log.debug('login', userId);
+  log.debug('selectUser', userId);
   getStore().selectedUser = User.getById(userId);
   await Post.fetch(`userId=${userId}`);
   log.debug('selected user:', getStore().selectedUser);
